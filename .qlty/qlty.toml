@@ -1,0 +1,61 @@
+# This configuration was generated with the setup-qlty-toml skill.
+# For reference: https://docs.qlty.sh/qlty-toml
+config_version = "0"
+
+exclude_patterns = [
+  "vendor/**/*",
+  "tmp/**/*",
+  "coverage/**/*",
+  "doc/**/*",
+  "pkg/**/*",
+]
+
+test_patterns = [
+  "**/spec/**",
+  "**/*_spec.rb",
+]
+
+[smells]
+mode = "comment"
+
+# REQUIRED — points to the built-in Qlty plugin registry. Do not omit this block.
+[[source]]
+name = "default"
+default = true
+
+# Ruby linter (standardrb wraps RuboCop with opinionated defaults)
+[[plugin]]
+name = "standardrb"
+mode = "comment"
+config_files = [".standard.yml"]
+
+# Ruby code smell detection
+[[plugin]]
+name = "reek"
+mode = "comment"
+
+# Security — secrets detection
+[[plugin]]
+name = "trufflehog"
+mode = "block"
+
+# GitHub Actions security scanner
+[[plugin]]
+name = "zizmor"
+mode = "block"
+config_files = ["zizmor.yml"]
+
+# GitHub Actions syntax linter
+[[plugin]]
+name = "actionlint"
+mode = "comment"
+
+# YAML linter
+[[plugin]]
+name = "yamllint"
+mode = "comment"
+
+# Markdown linter
+[[plugin]]
+name = "markdownlint"
+mode = "comment"
