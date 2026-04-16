@@ -1,0 +1,5 @@
+---
+ignore:
+  - vendor/**/*
+  - tmp/**/*
+  - coverage/**/*
